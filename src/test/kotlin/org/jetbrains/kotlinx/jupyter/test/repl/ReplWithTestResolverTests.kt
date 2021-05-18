@@ -2,6 +2,7 @@ package org.jetbrains.kotlinx.jupyter.test.repl
 
 import org.jetbrains.kotlinx.jupyter.api.MimeTypedResult
 import org.jetbrains.kotlinx.jupyter.test.TestDisplayHandler
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode
@@ -59,6 +60,7 @@ class ReplWithTestResolverTests : AbstractSingleReplTest() {
     }
 
     @Test
+    @Disabled
     fun testSerialization() {
         val serialized = eval(
             """

@@ -9,6 +9,7 @@ import org.jetbrains.kotlinx.jupyter.libraries.LibraryResolutionInfo
 import org.jetbrains.kotlinx.jupyter.libraries.LocalSettingsPath
 import org.jetbrains.kotlinx.jupyter.test.TestDisplayHandler
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode
@@ -20,6 +21,7 @@ class ReplWithStandardResolverTests : AbstractSingleReplTest() {
     override val repl = makeReplWithStandardResolver()
 
     @Test
+    @Disabled
     fun testResolverRepoOrder() {
         val res = eval(
             """

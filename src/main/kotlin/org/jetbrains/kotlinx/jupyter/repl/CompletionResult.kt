@@ -43,7 +43,7 @@ abstract class CompletionResult {
                             it.displayText,
                             it.icon,
                             it.tail,
-                            it.deprecationLevel?.name,
+                            null,
                         )
                     }
                 )

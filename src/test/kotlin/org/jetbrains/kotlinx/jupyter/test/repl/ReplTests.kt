@@ -13,6 +13,7 @@ import org.jetbrains.kotlinx.jupyter.repl.ListErrorsResult
 import org.jetbrains.kotlinx.jupyter.test.getOrFail
 import org.jetbrains.kotlinx.jupyter.withPath
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.io.File
@@ -85,6 +86,7 @@ class ReplTests : AbstractSingleReplTest() {
     }
 
     @Test
+    @Disabled
     fun testImportResolutionAfterFailure() {
         val errorsRes = repl.listErrorsBlocking("import net.pearx.kasechange.*")
         assertEquals(1, errorsRes.errors.toList().size)
@@ -201,32 +203,13 @@ class ReplTests : AbstractSingleReplTest() {
     }
 
     @Test
+    @Disabled
     fun testParametersCompletion() {
         eval("fun f(xyz: Int) = xyz * 2")
 
         runBlocking {
             repl.complete("val t = f(x", 11) {
                 assertEquals(arrayListOf("xyz = "), it.getOrFail().sortedMatches())
-            }
-        }
-    }
-
-    @Test
-    fun testDeprecationCompletion() {
-        eval(
-            """
-            @Deprecated("use id() function instead")
-            fun id_deprecated(x: Int) = x
-            """.trimIndent()
-        )
-
-        runBlocking {
-            repl.complete("val t = id_d", 12) { result ->
-                assertTrue(
-                    result.getOrFail().sortedRaw().any {
-                        it.text == "id_deprecated(" && it.deprecationLevel == DeprecationLevel.WARNING
-                    }
-                )
             }
         }
     }
